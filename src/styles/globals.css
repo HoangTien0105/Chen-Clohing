@@ -5,10 +5,10 @@
 
 /* CSS Variables */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --primary-color: #3490dc;
-  --secondary-color: #ffed4a;
+  --background: #F3F4F6;
+  --foreground: #1F2937;
+  --primary-color: #1E3A8A;
+  --secondary-color: #3B82F6;
   --font-family: 'Arial', 'Helvetica', sans-serif;
 }
 
@@ -54,7 +54,7 @@ a:hover {
 /* Buttons */
 button {
   background-color: var(--primary-color);
-  color: var(--foreground);
+  color: var(--background);
   border: none;
   padding: 0.5em 1em;
   cursor: pointer;
@@ -76,4 +76,93 @@ input, textarea {
 input:focus, textarea:focus {
   border-color: var(--primary-color);
   outline: none;
+}
+
+/* Slider container */
+.slider {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  overflow: hidden;
+}
+
+/* Card container */
+.card {
+  width: 300px;
+  margin: 0 10px;
+  text-align: center;
+  background: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* Slick-specific styles */
+.slick-list {
+  overflow: hidden;
+  padding: 0 20px;
+}
+
+.slick-track {
+  display: flex !important;
+  align-items: center;
+}
+
+.slick-slide {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  transform: scale(0.85);
+  opacity: 0.6;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.slick-center {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Arrow buttons */
+.slick-prev,
+.slick-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  font-size: 24px;
+  background: #663300 !important;
+  color: white;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.slick-prev {
+  left: -40px;
+}
+
+.slick-next {
+  right: -40px;
+}
+
+/* Pagination dots */
+.slick-dots {
+  bottom: -20px;
+  display: flex !important;
+  justify-content: center;
+}
+
+.slick-dots li button:before {
+  font-size: 12px;
+  color: gray;
+}
+
+.slick-dots li.slick-active button:before {
+  color: black;
 }
