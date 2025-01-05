@@ -1,9 +1,10 @@
 import React from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import styles from "./ProductSlider.module.css"; 
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 import ProductCard from "@/components/Product/ProductCard";
+import { EffectCoverflow, Navigation, Pagination } from "swiper/modules";
 
 interface Product {
   id: number;
@@ -16,36 +17,35 @@ interface ProductSliderProps {
   products: Product[];
 }
 
-const NextArrow: React.FC<{ onClick?: () => void }> = ({ onClick }) => (
-  <div className="slick-arrow slick-next" onClick={onClick} style={{ fontSize: '24px' }}>
-    Next
-  </div>
-);
-
-const PrevArrow: React.FC<{ onClick?: () => void }> = ({ onClick }) => (
-  <div className="slick-arrow slick-prev" onClick={onClick} style={{ fontSize: '24px' }}>
-    Prev
-  </div>
-);
-
 const ProductSlider: React.FC<ProductSliderProps> = ({ products }) => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    centerMode: true,
-    slidesToScroll: 1,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-  };
-
   return (
-    <Slider {...settings}>
+    <Swiper
+      effect={"coverflow"}
+      grabCursor={true}
+      centeredSlides={true}
+      slidesPerView={2} // Hiển thị một sản phẩm
+      spaceBetween={20}
+      loop={true}
+      coverflowEffect={{
+        rotate: 10, // Góc xoay của các thẻ
+        stretch: 0, // Khoảng cách giữa các thẻ
+        depth: 150, // Chiều sâu của các thẻ
+        modifier: 1,
+        slideShadows: false, // Bóng đổ cho các thẻ
+      }}
+      pagination={{ 
+        clickable: true
+      }}
+      navigation={true}
+      modules={[EffectCoverflow, Pagination, Navigation]}
+      className="mySwiper"
+    >
       {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
+        <SwiperSlide key={product.id}>
+          <ProductCard product={product} />
+        </SwiperSlide>
       ))}
-    </Slider>
+    </Swiper>
   );
 };
 

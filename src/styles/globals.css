@@ -3,166 +3,126 @@
 @tailwind components;
 @tailwind utilities;
 
-/* CSS Variables */
-:root {
-  --background: #F3F4F6;
-  --foreground: #1F2937;
-  --primary-color: #1E3A8A;
-  --secondary-color: #3B82F6;
-  --font-family: 'Arial', 'Helvetica', sans-serif;
-}
-
 /* Global Styles */
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: var(--font-family);
-  margin: 0;
-  padding: 0;
-  line-height: 1.6;
+  @apply text-gray-800 bg-gray-100 font-sans leading-relaxed;
 }
 
-/* Utility Classes */
-.hidden {
-  display: none !important;
-}
-
-.visible {
-  display: block !important;
-}
-
-/* Typography */
-h1, h2, h3, h4, h5, h6 {
-  margin: 0;
-  font-weight: 600;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-bold m-0;
 }
 
 p {
-  margin: 0 0 1em;
+  @apply mb-4;
 }
 
-/* Links */
-a {
-  color: var(--primary-color);
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* Buttons */
 button {
-  background-color: var(--primary-color);
-  color: var(--background);
-  border: none;
-  padding: 0.5em 1em;
-  cursor: pointer;
-  font-family: var(--font-family);
+  @apply bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-500;
 }
 
-button:hover {
-  background-color: var(--secondary-color);
+input,
+textarea {
+  @apply px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300;
 }
 
-/* Forms */
-input, textarea {
-  font-family: var(--font-family);
-  padding: 0.5em;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+/* Custom Brown Background Color */
+.bg-brown-600 {
+  background-color: #964B00; /* Brown color code */
 }
 
-input:focus, textarea:focus {
-  border-color: var(--primary-color);
-  outline: none;
+.bg-brown-700 {
+  background-color: #7C3A00; /* Darker brown color code for hover */
 }
 
-/* Slider container */
-.slider {
-  position: relative;
+
+
+/* Swiper Container */
+.mySwiper {
   display: flex;
+  align-items: center;
   justify-content: center;
-  align-items: center;
-  padding: 20px 0;
+  padding: 20px;
+  padding-bottom: 70px; /* Tạo thêm không gian cho pagination bullets */
   overflow: hidden;
+  width: 100%;
+  max-width: 1200px; 
+  margin: 0 auto;
 }
 
-/* Card container */
-.card {
-  width: 300px;
-  margin: 0 10px;
-  text-align: center;
-  background: #f5f5f5;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, opacity 0.3s;
-}
-
-.card:hover {
-  transform: scale(1.05);
-}
-
-/* Slick-specific styles */
-.slick-list {
-  overflow: hidden;
-  padding: 0 20px;
-}
-
-.slick-track {
-  display: flex !important;
-  align-items: center;
-}
-
-.slick-slide {
+/* Swiper Slide Styles */
+.swiper-slide {
   display: flex !important;
   justify-content: center;
   align-items: center;
-  transform: scale(0.85);
-  opacity: 0.6;
-  transition: transform 0.3s, opacity 0.3s;
+  height: 100%;
+  overflow: visible !important;
 }
 
-.slick-center {
-  transform: scale(1);
-  opacity: 1;
+.swiper-slide-active {
+  transform: scale(1.2);
+  z-index: 10;
+  transition: all 0.3s ease; /* Thêm hiệu ứng mượt */
+  opacity: 1
 }
 
-/* Arrow buttons */
-.slick-prev,
-.slick-next {
+.swiper-slide-next,
+.swiper-slide-prev {
+  transform: scale(0.9);
+  opacity: 0.7;
+  transition: all 0.3s ease; /* Hiệu ứng mượt */
+}
+
+/* Navigation Buttons */
+/* Navigation Buttons */
+.swiper-button-next,
+.swiper-button-prev {
+  @apply bg-brown-600 text-white w-14 h-14 rounded-full flex justify-center items-center shadow-lg transition-transform duration-300 ease-in-out;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 2;
-  font-size: 24px;
-  background: #663300 !important;
-  color: white;
   border-radius: 50%;
-  padding: 10px;
-  cursor: pointer;
 }
 
-.slick-prev {
-  left: -40px;
+.swiper-button-next {
+  right: -20px;
 }
 
-.slick-next {
-  right: -40px;
+.swiper-button-prev {
+  left: -20px;
 }
 
-/* Pagination dots */
-.slick-dots {
-  bottom: -20px;
-  display: flex !important;
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  @apply bg-brown-700 w-12 h-12; /* Darker brown on hover */
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  @apply text-sm font-bold text-white; /* Kích thước nhỏ hơn và mũi tên màu trắng */
+  line-height: 1; /* Đảm bảo mũi tên được căn giữa theo chiều dọc */
+  display: flex;
   justify-content: center;
+  align-items: center;
+  transform: scale(0.8);
 }
 
-.slick-dots li button:before {
-  font-size: 12px;
-  color: gray;
+
+/* Pagination Bullets */
+.swiper-pagination {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
 }
 
-.slick-dots li.slick-active button:before {
-  color: black;
+.image-container {
+  width: 200px; /* Kích thước khung cố định */
+  height: 300px;
+  position: relative; /* Cần thiết cho Image với fill */
+  overflow: hidden;
+  border-radius: 8px; /* Tùy chọn để bo góc */
 }

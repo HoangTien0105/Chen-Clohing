@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -9,7 +8,7 @@ interface Product {
   image: string;
 }
 
-function ProductCard({ product }: { product: Product }): JSX.Element {
+const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   return (
     <div
       className="product-card bg-white shadow-lg rounded-lg p-8 flex flex-col
@@ -19,14 +18,16 @@ function ProductCard({ product }: { product: Product }): JSX.Element {
         maxWidth: "300px",
         maxHeight: "550px",
         backgroundColor: "#663300",
+        overflow: "hidden", // Mặc định ẩn
+        position: "relative",
       }}
     >
-      <div className="relative w-full h-80">
+      <div className="image-container">
         <Image
           src={product.image}
           alt={product.name}
-          layout="fill" // Sử dụng layout fill cho toàn diện tích
-          objectFit="cover" // Đảm bảo hình ảnh được bao phủ đúng
+          fill
+          style={{ objectFit: "cover" }}
           className="rounded-t-lg"
         />
       </div>
@@ -37,10 +38,10 @@ function ProductCard({ product }: { product: Product }): JSX.Element {
         href={`/products/${product.id}`}
         className="text-blue-500 hover:underline mt-2 inline-block"
       >
-        Chi tiết
+        View Product
       </Link>
     </div>
   );
-}
+};
 
 export default ProductCard;

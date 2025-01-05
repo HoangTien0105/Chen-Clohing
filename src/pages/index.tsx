@@ -1,15 +1,13 @@
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Footer from "@/components/Footer/Footer";
 import Image from "next/image";
 import fakeProducts from "@/mocks/products";
 import ProductCard from "@/components/Product/ProductCard";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import ProductSlider from "@/components/Product/ProductSlider";
 
 const Home = () => {
   return (
-    <main>
+    <>
       <Header />
 
       {/* Hero Section */}
@@ -96,7 +94,7 @@ const Home = () => {
         </div>
       </section>
       <Footer />
-    </main>
+    </>
   );
 };
 
